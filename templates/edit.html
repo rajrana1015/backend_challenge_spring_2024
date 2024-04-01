@@ -1,0 +1,50 @@
+<!-- edit.html -->
+<!--By Raj Rana-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Volunteer Info</title>
+</head>
+<body>
+    <h1>Edit Volunteer Info</h1>
+    <form action="/update/api/volunteers/{{ volunteer[0] }}" method="POST">
+        <fieldset>
+            <legend>Edit Volunteer Info:</legend>
+            <label for="first_name">First name:</label><br>
+            <input type="text" id="first_name" name="first_name" value="{{ volunteer[1] }}"><br><br>
+            
+            <label for="last_name">Last name:</label><br>
+            <input type="text" id="last_name" name="last_name" value="{{ volunteer[2] }}"><br><br>
+            
+            <label for="email">Email:</label><br>
+            <input type="text" id="email" name="email" value="{{ volunteer[3] }}"><br><br>
+            
+            <label for="date_of_birth">Date of Birth:</label><br>
+            <input type="date" id="date_of_birth" name="date_of_birth" value="{{ volunteer[4] }}"><br><br>
+            
+            <label for="address">Address:</label><br>
+            <input type="text" id="address" name="address" value="{{ volunteer[5] }}"><br><br>
+            
+            <label for="skills">Skills:</label><br>
+            <input type="text" id="skills" name="skills" value="{{ volunteer[6] }}"><br><br>
+
+            <label for="availability">Availability:</label><br>
+            <input type="text" id="availability" name="availability" value="{{ volunteer[7] }}"><br><br>
+            
+            <label for="date_joined">Date Joined:</label><br>
+            <input type="date" id="date_joined" name="date_joined" value="{{ volunteer[8] }}"><br><br>
+            
+            <label for="background_check">Background Check:</label><br>
+            <input type="checkbox" id="background_check" name="background_check" {% if volunteer[9] %} checked {% endif %}><br><br>
+
+            <form action="/update/api/volunteers/{{ volunteer[0] }}" method="post">
+                <input type="submit" value="Update">
+            </form>
+            <input type="reset" value="Reset">
+        </fieldset>
+    </form> 
+</body>
+</html>

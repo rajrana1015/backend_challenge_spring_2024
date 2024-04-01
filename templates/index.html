@@ -1,0 +1,169 @@
+<!-- templates/index.html -->
+<!--By Raj Rana-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD App</title>
+</head>
+<body>
+    <h1>CRUD App</h1>
+    <form action="/add/api/volunteers/" method="POST">
+        <fieldset>
+            <legend>Input Volunteer Info:</legend>
+
+            <label for="first_name">First name:</label><br>
+            <input type="text" id="first_name" name="first_name" ><br><br>
+            
+            <label for="last_name">Last name:</label><br>
+            <input type="text" id="last_name" name="last_name" ><br><br>
+            
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" ><br><br>
+            
+            <label for="date_of_birth">Date of Birth:</label><br>
+            <input type="date" id="date_of_birth" name="date_of_birth" required><br><br>
+            
+            <label for="address">Address:</label><br>
+            <input type="text" id="address" name="address" ><br><br>
+            
+            <label for="skills">Skills:</label><br>
+            <input type="text" id="skills" name="skills" ><br><br>
+
+            <label for="availability">Availability:</label><br>
+            <input type="text" id="availability" name="availability" ><br><br>
+            
+            <label for="date_joined">Date Joined:</label><br>
+            <input type="date" id="date_joined" name="date_joined" required><br><br>
+            
+            <label for="background_check">Background Check:</label><br>
+            <input type="checkbox" id="background_check" name="background_check"><br><br>
+
+            <input type="submit" value="Submit">
+            <input type="reset" value="Reset">
+        </fieldset>
+    </form>
+    
+        <style>
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            th, td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
+            }
+            th {
+                background-color: #f2f2f2;
+            }
+        </style>
+        <h1>Volunteer Information</h1>
+
+        <form action="/api/volunteers" method="get" id="volunteer">
+            <!-- Pagination -->
+            <label for="page">Page:</label>
+            <input type="number" id="page" name="page" value="1">
+            <label for="per_page">Per Page:</label>
+            <input type="number" id="per_page" name="per_page" value="10">
+            <br>
+            <!-- Filtering -->
+            <label for="filter_by">Filter By:</label>
+            <select id="filter_by" name="filter_by">
+                <option value="volunteer_id">Volunteer ID</option>
+                <option value="first_name">First Name</option>
+                <option value="last_name">Last Name</option>
+                <option value="email">Email</option>
+                <option value="date_of_birth">Date of Birth</option>
+                <option value="skills">Skills</option>
+                <option value="availability">Availability</option>
+                <option value="date_joined">Date Joined</option>
+                <option value="background_check">Background Check</option>
+                <!-- Add other sorting options here -->
+            </select>
+            <label for="filter_criteria">Filter Search:</label>
+            <input type="text" id="filter_criteria" name="filter_criteria">
+            <br>
+            <!-- Sorting -->
+            <label for="sort_by">Sort By:</label>
+            <select id="sort_by" name="sort_by">
+                <option value="volunteer_id">Volunteer ID</option>
+                <option value="first_name">First Name</option>
+                <option value="last_name">Last Name</option>
+                <option value="email">Email</option>
+                <option value="date_of_birth">Date of Birth</option>
+                <option value="skills">Skills</option>
+                <option value="availability">Availability</option>
+                <option value="date_joined">Date Joined</option>
+                <option value="background_check">Background Check</option>
+                <!-- Add other sorting options here -->
+            </select>
+            <label for="sort_order">Sort Order:</label>
+            <select id="sort_order" name="sort_order">
+                <option value="asc">Ascending</option>
+                <option value="desc">Descending</option>
+            </select>
+            <br>
+            <br>
+            <input type="submit" value="Apply Filters">
+            
+            <form action="/">
+                <input type="submit" value="Reset">
+            </form>
+        </form>
+        <br>
+        <table>
+            <thead>
+                <tr>
+                    <th>Volunteer ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Date of Birth</th>
+                    <th>Address</th>
+                    <th>Skills</th>
+                    <th>Availability</th>
+                    <th>Date Joined</th>
+                    <th>Background Check</th>
+                    <th>Delete</th>
+                    <th>Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for volunteer in volunteer_data%}
+                    <tr>
+                        <td>{{ volunteer[0] }}</td>
+                        <td>{{ volunteer[1] }}</td>
+                        <td>{{ volunteer[2] }}</td>
+                        <td>{{ volunteer[3] }}</td>
+                        <td>{{ volunteer[4] }}</td>
+                        <td>{{ volunteer[5] }}</td>
+                        <td>{{ volunteer[6] }}</td>
+                        <td>{{ volunteer[7] }}</td>
+                        <td>{{ volunteer[8] }}</td>
+                        <td>{{ volunteer[9] }}</td>
+                        <td>
+                            <form action="/delete/api/volunteers/{{ volunteer[0] }}" method="post" id="deleteForm_{{ volunteer[0] }}">
+                                <input type="submit" value="Delete" onclick="confirmDelete('{{ volunteer[0] }}')">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="/edit/api/volunteers/{{ volunteer[0] }}" method="get">
+                                <input type="submit" value="Edit">
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <script>
+            function confirmDelete(volunteerId) {
+                if (confirm('Are you sure you want to delete this volunteer?')) {
+                    document.getElementById('deleteForm_' + volunteerId).submit();
+                }
+            }
+        </script>
+</body>
+</html>
