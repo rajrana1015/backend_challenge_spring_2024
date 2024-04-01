@@ -44,7 +44,7 @@ def index():
         sort_parameter = 'default_sort'
     return render_template('index.html', volunteer_data=volunteer_data, filter=filter_parameter, sort=sort_parameter)
 
-@app.route('/add', methods=['POST'])
+@app.route('/add/api/volunteers/', methods=['POST'])
 def add_item():
     volunteer_id = str(uuid.uuid4())  
     background_check = bool(request.form.get('background_check', False))
@@ -60,13 +60,13 @@ def add_item():
     conn.commit()
     return redirect(url_for('index'))
 
-@app.route('/delete/<uuid:volunteer_id>', methods=['POST'])
+@app.route('/delete/api/volunteers/<uuid:volunteer_id>', methods=['POST'])
 def delete_item(volunteer_id):
     cur.execute('DELETE FROM volunteers WHERE volunteer_id = %s',(str(volunteer_id),))
     conn.commit()
     return redirect(url_for('index'))
 
-@app.route('/edit/<uuid:volunteer_id>', methods=['GET'])
+@app.route('/edit/api/volunteers/<uuid:volunteer_id>', methods=['GET'])
 def edit_item(volunteer_id):
     cur.execute("SELECT * FROM volunteers WHERE volunteer_id = %s", (str(volunteer_id),))
     volunteer = cur.fetchone()
@@ -75,7 +75,7 @@ def edit_item(volunteer_id):
     else:
         return "Volunteer not found", 404
     
-@app.route('/update/<uuid:volunteer_id>', methods=['POST'])
+@app.route('/update/api/volunteers/<uuid:volunteer_id>', methods=['POST'])
 def update_item(volunteer_id):
     background_check = bool(request.form.get('background_check', False))
     first_name = request.form['first_name']

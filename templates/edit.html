@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1>Edit Volunteer Info</h1>
-    <form action="/update/{{ volunteer[0] }}" method="POST">
+    <form action="/update/api/volunteers/{{ volunteer[0] }}" method="POST">
         <fieldset>
             <legend>Edit Volunteer Info:</legend>
             <label for="first_name">First name:</label><br>
@@ -39,7 +39,7 @@
             <label for="background_check">Background Check:</label><br>
             <input type="checkbox" id="background_check" name="background_check" {% if volunteer[9] %} checked {% endif %}><br><br>
 
-            <form action="/update/{{ volunteer[0] }}" method="post">
+            <form action="/update/api/volunteers/{{ volunteer[0] }}" method="post">
                 <input type="submit" value="Update">
             </form>
             <input type="reset" value="Reset">

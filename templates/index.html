@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1>CRUD App</h1>
-    <form action="/add" method="POST">
+    <form action="/add/api/volunteers/" method="POST">
         <fieldset>
             <legend>Input Volunteer Info:</legend>
 
@@ -144,12 +144,12 @@
                         <td>{{ volunteer[8] }}</td>
                         <td>{{ volunteer[9] }}</td>
                         <td>
-                            <form action="/delete/{{ volunteer[0] }}" method="post" id="deleteForm_{{ volunteer[0] }}">
+                            <form action="/delete/api/volunteers/{{ volunteer[0] }}" method="post" id="deleteForm_{{ volunteer[0] }}">
                                 <input type="submit" value="Delete" onclick="confirmDelete('{{ volunteer[0] }}')">
                             </form>
                         </td>
                         <td>
-                            <form action="/edit/{{ volunteer[0] }}" method="get">
+                            <form action="/edit/api/volunteers/{{ volunteer[0] }}" method="get">
                                 <input type="submit" value="Edit">
                             </form>
                         </td>
