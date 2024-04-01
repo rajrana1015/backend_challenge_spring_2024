@@ -34,12 +34,14 @@ conn.commit()
 
 @app.route('/')
 def index():
+    #Retrives data base query to display and renders index.html
     cur.execute("SELECT * FROM volunteers")
     volunteer_data = cur.fetchall()
     return render_template('index.html', volunteer_data=volunteer_data)
 
 @app.route('/add/api/volunteers/', methods=['POST'])
 def add_item():
+    #Collect inputs about volunteer  from user to add into database
     volunteer_id = str(uuid.uuid4())  
     background_check = bool(request.form.get('background_check', False))
     first_name = request.form.get('first_name','N/A')
@@ -56,6 +58,7 @@ def add_item():
 
 @app.route('/delete/api/volunteers/<uuid:volunteer_id>', methods=['POST'])
 def delete_item(volunteer_id):
+    #Removes selected volunteers information from 
     cur.execute('DELETE FROM volunteers WHERE volunteer_id = %s',(str(volunteer_id),))
     conn.commit()
     return redirect(url_for('index'))
