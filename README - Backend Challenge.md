@@ -7,8 +7,6 @@ This document provides a step-by-step guide on installing dependencies and runni
 #### Prerequisites:
 - Python 3.x installed on your system.
 - PostgreSQL database installed and running.
-- Basic knowledge of Flask framework.
-- Basic knowledge of SQL.
 
 #### Installation:
 
@@ -25,10 +23,6 @@ This document provides a step-by-step guide on installing dependencies and runni
 3. **Clone the Application:**
    Clone or download the application code from the repository.
 
-4. **Navigate to the Project Directory:**
-   ```
-   cd <project_directory>
-   ```
 
 #### Database Setup:
 
@@ -41,13 +35,13 @@ This document provides a step-by-step guide on installing dependencies and runni
 #### Running the Application:
 
 1. **Configure Database Connection:**
-   - Open `app.py` in a text editor.
-   - Modify the database connection settings in the following lines:
-     ```python
+   - Open `CRUDpy.py` in a editor.
+   - Modify the database connection settings in the following lines using your PostgreSQL user (DB_USER) and password (DB_PASSSWORD)leaving everything else the same:
+     ```
      DB_HOST = 'localhost'
      DB_NAME = 'dev'
      DB_USER = 'postgres'
-     DB_PASSWORD = 'rrana9'
+     DB_PASSWORD = 'password'
      DB_PORT = "5432"
      ```
 
@@ -62,7 +56,6 @@ This document provides a step-by-step guide on installing dependencies and runni
 #### Usage:
 
 1. **Adding a Volunteer:**
-   - Click on the "Add Volunteer" button on the home page.
    - Fill in the volunteer information in the form and click "Submit".
 
 2. **Editing a Volunteer:**
@@ -73,8 +66,6 @@ This document provides a step-by-step guide on installing dependencies and runni
    - Click on the "Delete" button next to the volunteer you want to delete.
    - Confirm the deletion when prompted.
 
-4. **Viewing All Volunteers:**
-   - Click on the "View All Volunteers" button on the home page to see a list of all volunteers.
 
 #### Conclusion:
 This document has provided detailed instructions on installing dependencies and running the Flask and PostgreSQL CRUD application. Follow the steps outlined above to set up and use the application successfully.
