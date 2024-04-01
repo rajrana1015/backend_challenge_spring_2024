@@ -36,13 +36,7 @@ conn.commit()
 def index():
     cur.execute("SELECT * FROM volunteers")
     volunteer_data = cur.fetchall()
-    filter_parameter = request.args.get('filter')
-    sort_parameter = request.args.get('sort')
-    if not filter_parameter:
-        filter_parameter = 'default_filter'
-    if not sort_parameter:
-        sort_parameter = 'default_sort'
-    return render_template('index.html', volunteer_data=volunteer_data, filter=filter_parameter, sort=sort_parameter)
+    return render_template('index.html', volunteer_data=volunteer_data)
 
 @app.route('/add/api/volunteers/', methods=['POST'])
 def add_item():
